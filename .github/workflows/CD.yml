@@ -1,0 +1,25 @@
+name: CD
+
+on:
+    workflow_run:
+        workflows: ["CI"]
+        types:
+            - completed
+
+
+jobs:
+    start:
+        runs-on: node-52
+
+        steps:
+            - name: Dừng container cũ
+              run: sudo docker stop con-be_cyber_community
+
+            - name: Xoá container cũ
+              run: sudo docker rm con-be_cyber_community
+
+            - name: Xoá image cũ
+              run: sudo docker rmi vulebaolong/img-be_cyber_community:latest
+
+            - name: Kéo và chạy lại image trên docker hub
+              run: sudo docker compose up -d
