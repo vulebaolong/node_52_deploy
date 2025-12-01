@@ -34,6 +34,7 @@ async function bootstrap() {
 }
 bootstrap();
 
+
 /**
 
 cài prisma bị lỗi (prisma update version mới 7.0.0)
